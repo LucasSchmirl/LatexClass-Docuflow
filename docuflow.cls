@@ -50,6 +50,7 @@
 \RequirePackage{amsmath}    % math support
 \RequirePackage{csquotes}   % smart quotes
 \RequirePackage{tikz}       % titlepage background
+\RequirePackage{enumitem}   % custom enumerate
 
 
 % ---------------- Hyperref setup ----------------
@@ -93,6 +94,9 @@
 % ---- Frontmatter helper (Abstract + Kurzfassung) sprachenabhängig ---------
 \newcommand{\DFmakefrontmatter}{%
   \maketitle
+  % Contents
+  \tableofcontents
+  \clearpage
   % abstract.tex einbinden, falls vorhanden (bei english und ngerman)
   \IfFileExists{abstract.tex}{\input{abstract.tex}}{}%
   % Kurzfassung einfügen nur wenn Sprache 'ngerman' ist und die Datei existiert
