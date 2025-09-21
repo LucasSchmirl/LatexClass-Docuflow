@@ -1,0 +1,135 @@
+% DocuFlow Class v1.0 (Tutorial)
+% Created by Lucas Schmirl, 2025.
+
+\section*{Kurze Einführung in die \texttt{docuflow}-Klasse}
+
+Die \texttt{docuflow}-Klasse ist eine LaTeX-Klasse, die speziell für wissenschaftliche Dokumente, Berichte und Präsentationen entwickelt wurde. 
+Sie bietet einige Komfortfunktionen und vorgefertigte Layouts für konsistente Formatierung.
+
+\subsection*{Aufruf der Klasse}
+
+Die Klasse wird wie folgt eingebunden:
+
+\begin{verbatim}
+\documentclass[<Sprache>,<DokTyp>,<Zitationsstil>,<Schriftgröße>]{docuflow}
+\end{verbatim}
+
+\subsection*{Mögliche Optionen}
+
+\begin{itemize}
+    \item \textbf{Sprache:} 
+    \begin{itemize}
+        \item \texttt{english} – Englische Lokalisierung (Standard)
+        \item \texttt{ngerman} – Deutsche Lokalisierung
+    \end{itemize}
+    \item \textbf{Dokumenttyp:} 
+    \begin{itemize}
+        \item \texttt{article} – Standardartikel
+        \item \texttt{report} – Berichtsmodus (Kapitel verfügbar)
+        \item \texttt{book} – Buchmodus (Kapitel verfügbar)
+    \end{itemize}
+    \item \textbf{Zitationsstil:} 
+    \begin{itemize}
+        \item \texttt{apa7} – APA 7. Ausgabe
+        \item \texttt{harvard} – Harvard-Stil
+        \item \texttt{IEEE} – IEEE-Zitationsstil
+    \end{itemize}
+    \item \textbf{Schriftgröße:} 
+    \begin{itemize}
+        \item \texttt{10pt}, \texttt{11pt}, \texttt{12pt} – Standard-LaTeX-Schriftgrößen
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Besondere Funktionen}
+
+\begin{itemize}
+    \item \textbf{Titelblatt mit Hintergrundbild:}\\
+    Mit den Makros \verb|\settitlebackground{<Bildpfad>}| und 
+    
+    \verb|\setTitlePageContent{<Inhalt>}| kann ein individuelles Titelblatt gestaltet werden.
+
+    \item \textbf{Automatische Überschriften für Frontmatter:}\\
+    Abstract, Kurzfassung und Abkürzungsverzeichnis passen sich automatisch an den Dokumenttyp an (Artikel: \verb|\section*|, Report/Book: \verb|\chapter*|).
+
+    \item \textbf{Bibliographie-Integration:}\\
+    Biber/BibLaTeX wird direkt unterstützt. Der Stil passt sich automatisch an die Klassenoption an.
+
+    \item \textbf{Makros für Abbildungen:}\\
+    Beispiel: \verb|\DFfigure[<Breite>]{<Bild>}{<Beschriftung>}{<Label>}|
+    
+    \item \textbf{Deutsche Lokalisierung:}\\
+    Überschriften für Abbildungsverzeichnis, Tabellenverzeichnis, Inhaltsverzeichnis und Abkürzungsverzeichnis werden automatisch gesetzt, wenn \texttt{ngerman} gewählt wird.
+\end{itemize}
+
+
+\clearpage
+
+\subsection*{Aufbau der Dokumentdateien}
+
+Die \texttt{docuflow}-Klasse ist so konzipiert, dass der Inhalt modular in mehreren \texttt{.tex}-Dateien organisiert wird. Jede Datei hat einen eigenen Zweck und kann unabhängig bearbeitet werden. Danach werden die Dateien einfach in das Hauptdokument eingebunden.
+
+\begin{itemize}
+    \item \textbf{definitions.tex:}  
+    Enthält alle globalen Definitionen, Farben, Schriftarten, Größen und Makros (z. B. für Abbildungen). Diese Datei wird einmalig in \texttt{main.tex} geladen.
+
+    \item \textbf{abstract.tex:}  
+    Enthält den englischen Abstract des Dokuments. Einfach den Text bearbeiten, die Überschrift wird automatisch angepasst.
+
+    \item \textbf{kurzfassung.tex:}  
+    Enthält die deutsche Kurzfassung. Diese Datei wird nur eingebunden, wenn die Klasse mit \texttt{ngerman} aufgerufen wird.
+
+    \item \textbf{content.tex:}  
+    Der Hauptinhalt des Dokuments. Alle Kapitel, Abschnitte oder sonstiger Text wird hier eingefügt.  
+
+    \item \textbf{bibliography.bib:}  
+    Enthält alle Literaturangaben im BibLaTeX-Format. 
+    
+    Sie wird über \verb|\addbibresource{bibliography.bib}| in der Klasse eingebunden.
+
+    \item \textbf{PICs/\textless name\textgreater.pdf/png/jpg:}  
+    Alle Grafiken, die über \verb|\DFfigure| oder manuell eingefügt werden, liegen hier.  
+\end{itemize}
+
+\noindent
+Die Idee ist, dass jede Datei separat bearbeitet wird, ohne das Hauptdokument zu verändern. Das Hauptdokument \texttt{main.tex} bindet sie dann alle ein und sorgt für die korrekte Reihenfolge.
+
+
+\clearpage
+
+\subsection*{Beispiel für die Verwendung}
+
+
+In \verb|definitions.tex|:
+
+\begin{verbatim}
+    \settitlebackground{PICs/bg-image.pdf}
+    \setTitlePageContent{
+    \centering
+    {\Huge\bfseries Mein Titel}\\[2ex]
+    {\Large Autor Name}\\[1ex]
+    {\small \today}
+    }
+\end{verbatim}
+
+\noindent In \verb|main.tex|:
+
+\begin{verbatim}
+    \documentclass[ngerman,article,IEEE,12pt]{docuflow}
+
+
+    \begin{document}
+    \maketitle
+    \input{abstract.tex}
+    \input{kurzfassung.tex}
+    \pagenumbering{arabic}
+    \input{content.tex}
+    \printbibliography
+    \listoffigures
+    \listoftables
+    \section*{\acronymname}
+    \begin{acronym}[TDMA]
+    \acro{CPU}{Central Processing Unit}
+    \acro{RAM}{Random Access Memory}
+    \end{acronym}
+    \end{document}
+\end{verbatim}

@@ -1,0 +1,31 @@
+# Ignore all files
+*/
+*.lof
+*.log
+*.aux
+*.gz
+*.toc
+*.lot
+*.lol
+*.mp4
+*.xml
+*.bcf
+*.bbl
+*.blg
+
+
+# Unignore interesting stuff
+!.gitignore
+
+!PICs
+!bibliography.bib
+!definitions.tex
+!abstract.tex
+!kurzfassung.pdf
+!content.tex
+!main.tex
+!main.pdf
+!docuflow.cls
+!snippets.tex
+!tutorial.tex
+!README.md

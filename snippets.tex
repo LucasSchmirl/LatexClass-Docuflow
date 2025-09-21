@@ -1,0 +1,74 @@
+% DocuFlow Class v1.0 (Snippets)
+% Created by Lucas Schmirl, 2025.
+
+\section{Hier sind weitere Snippets}
+
+Querverweise werden in \LaTeX{} automatisch erzeugt und verwaltet, damit sie leicht aktualisiert werden können. 
+Hier wird zum Beispiel auf Abbildung~\ref{Abb:hund} verwiesen.
+
+Abkürzungen sind im Abkürzungsverzeichnis vermerkt. Ein Beispiel einer Abkürzung im Kontext unserer Produktionslinien ist: \ac{TBD}\\
+
+Die \glqq{}Gute-Farbe\grqq{} ist \textcolor{FAVgreen}{dieses Grün (RGB:~177,179,48)}.
+
+\noindent Wenn ein neuer Absatz \textcolor{red}{nicht} eingerückt werden soll funktioniert das so.
+
+    \section{Überschrift Tiefe 1 (section)}
+    
+    \begin{figure}[!htbp]
+        \centering
+        \includegraphics[width=0.7\linewidth]{PICs/hund.png}
+        \caption{Das ist der selbe Hund (ohne das Bild zu rotieren).}
+        \label{Abb:hund}
+    \end{figure}
+    
+    \clearpage
+        \subsection{Überschrift Tiefe 2 (subsection)}
+        Und hier ist ein Verweis auf Tabelle~\ref{tab:1}. Das gezeigte Tabellenformat ist nur ein Beispiel. 
+        Tabellen können individuell gestaltet werden, dazu gerne auch mal dieses \hyperref{https://www.tablesgenerator.com/}{category}{name}{Tool} austesten.\\
+    
+        \begin{table}[!htbp]
+            \centering
+            \begin{tabular}{| p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |}\hline
+            Datum & Produktionsschritt & Abteilung\\\hline
+            15.02.2025 & Rohstoffmischung & Chemielabor\\
+            17.02.2025 & Qualitätsprüfung & Labor\\
+            20.02.2025 & Abfüllung & Produktion\\
+            22.02.2025 & Verpackung & Logistik\\\hline
+            \end{tabular}
+            \caption{Produktionsplan für Reinigungsmittel \glqq{} EcoClean\grqq{}.}\label{tab:1}
+        \end{table}
+
+
+
+        
+        \subsubsection{Überschrift Tiefe 3 (subsubsection)}
+        Anführungszeichen können auf \glq{}diese\grq{} und \glqq{}jene\grqq{} Weise verwendet werden.\\
+
+        So macht man einen Absatzumbruch.\\
+        Und so einen Seitenumbruch.\clearpage
+
+
+\section{Überschrift der Tiefe 0 (section)}
+Im nächsten Unterkapitel werden Formeln dargestellt.
+
+
+    \subsection{Überschrift Tiefe 1 (subsection)}
+    Hier wird auf die Formel~\ref{Gl:1} verwiesen.
+
+    \begin{align}
+        x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl:1}
+    \end{align}
+    \begin{align}
+        x = -\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-q}\label{Gl:2}
+    \end{align}
+
+        \subsubsection{Überschrift Tiefe 2 (subsubsection)}
+        Literaturverweise sollten automatisch verwaltet werden, vor allem, wenn es viele Quellenverweise gibt. 
+        Beispiele sind~\cite{Ko05a},~\cite{Ko05b},~\cite{MiGo05},~\cite{TeGo14},~\cite{HuHa07}.
+        Es wird dringend empfohlen, Biber oder BibTeX zu verwenden (wie in diesen Beispielen).
+        
+        Siehe dazu auch den Ort wo diese definiert werden \verb|bibliography.tex|, (Templates verfügbar).
+
+    
+
+\clearpage

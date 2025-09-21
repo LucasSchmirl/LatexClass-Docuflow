@@ -1,0 +1,58 @@
+% DocuFlow Class v1.0 (main.tex)
+% Created by Lucas Schmirl, 2025.
+
+% chktex-file 1 % to ignore trailing whitespace warning
+
+\documentclass[ngerman,article,apa7,12pt]{docuflow}
+
+% Include definitions (titlepage setup)
+\input{definitions.tex}
+
+% === START DOCUMENT ===
+\begin{document}
+
+% Front matter with Roman page numbering
+\pagenumbering{roman}
+
+% handle abstract, and Kurzfassung (if ngerman)
+\DFmakefrontmatter
+
+% main matter with Arabic page numbering
+\pagenumbering{arabic}
+
+
+% Class tutorial
+\input{tutorial.tex}
+\clearpage
+
+% Main content
+\input{content.tex}
+\clearpage
+
+
+% Example snippets
+\input{snippets.tex}
+
+
+% Print list of figures
+\listoffigures
+\clearpage
+
+% Print list of tables
+\listoftables
+\clearpage
+
+% Print acronyms
+\DFautoSection{\acronymname}
+\begin{acronym}[RAM]  % widest acronym for spacing
+  \acro{CPU}{Central Processing Unit}
+  \acro{RAM}{Random Access Memory}
+  \acro{GPU}{Graphics Processing Unit}
+  \acro{TBD}{The best dog}
+\end{acronym}
+\clearpage
+
+% Print bibliography
+\printbibliography
+
+\end{document}
