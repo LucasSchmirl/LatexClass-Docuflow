@@ -1,6 +1,48 @@
+% Titlepage content
+\renewcommand{\title}{My First DocuFlow Document}
+\newcommand{\subtitle}{Mitigating bloated \LaTeX-classes}
+\renewcommand{\author}{Lucas Schmirl, MSc.}
+\renewcommand{\date}{\today}
+
+% Titlepage backgroundimage (required: A4 (210 mm × 297 mm) image.)
+\settitlebackground{PICs/title-DocuFlow.pdf}
+
+% Titlepage content/spacing
+\setTitlePageContent{
+  \begin{center}
+    \vspace{10cm}
+    \Huge\bfseries \title\\
+    \vspace{1cm}
+    \Large \subtitle\\
+    \vspace{4cm}
+    \large \author\\
+    \small \today
+  \end{center}
+}
+
+% User-defined colors
+\definecolor{FAVgreen}{RGB}{177,179,48}
+\definecolor{FAVblue}{HTML}{34457f}
+\definecolor{FAVgray}{RGB}{177,177,175}
+
+
+% Macros
+
+% ---------------- Figure macro ----------------
+% Usage: \DFfigure[size\linewidth]{<image path>}{<caption>}{<label>}
+\newcommand{\DFfigure}[4][0.8\linewidth]{%
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=#1]{#2}
+    \caption{#3}\label{#4}
+\end{figure}
+}
+
+
 % Uncomment to customize fonts:
 %\usepackage{lmodern}      % Latin Modern font family
-% --- Font sizes for 12pt class (default reference) ---
+
+% --- Reference of default Font sizes for 12pt class ---
 % \renewcommand{\tiny}{\fontsize{6}{7}\selectfont}
 % \renewcommand{\scriptsize}{\fontsize{8}{9}\selectfont}
 % \renewcommand{\footnotesize}{\fontsize{10}{12}\selectfont}
@@ -11,39 +53,3 @@
 % \renewcommand{\LARGE}{\fontsize{20.7}{24}\selectfont}
 % \renewcommand{\huge}{\fontsize{24.8}{29}\selectfont}
 % \renewcommand{\Huge}{\fontsize{29.8}{35}\selectfont}
-
-
-% --- Titlepage setup ---
-\settitlebackground{PICs/title-DocuFlow.pdf}
-
-% Titlepage content
-\setTitlePageContent{
-  \centering
-  \vspace*{14cm}
-
-  {\Huge\bfseries My First DocuFlow Document}\\[2ex]
-  
-  \vspace*{2cm}
-
-  {\Large Author Name}\\[1ex]
-  {\small \today}
-}
-
-% User-defined colors
-\definecolor{FAVgreen}{RGB}{177,179,48}
-\definecolor{FAVblue}{RGB}{0,142,251}
-\definecolor{FAVgray}{RGB}{177,177,175}
-
-
-
-% Macros
-
-% ---------------- Figure macro ----------------
-% Usage: \DFfigure[size]{<image path>}{<caption>}{<label>}
-\newcommand{\DFfigure}[4][0.8\linewidth]{%
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=#1]{#2}
-    \caption{#3}\label{#4}
-\end{figure}
-}
