@@ -1,7 +1,7 @@
 % DocuFlow Class v1.0 (Snippets)
 % Created by Lucas Schmirl, 2025.
 
-\section{Hier sind weitere Snippets}
+\section{Hier sind weitere \texttt{Snippets}}
 
 Querverweise werden in \LaTeX{} automatisch erzeugt und verwaltet, damit sie leicht aktualisiert werden können. 
 Hier wird zum Beispiel auf Abbildung~\ref{Abb:hund} verwiesen.
@@ -12,7 +12,7 @@ Die \glqq{}Gute-Farbe\grqq{} ist \textcolor{FAVgreen}{dieses Grün (RGB:~177,179
 
 \noindent Wenn ein neuer Absatz \textcolor{red}{nicht} eingerückt werden soll funktioniert das so.
 
-    \section{Überschrift Tiefe 1 (section)}
+\section{Überschrift Tiefe 1 (section)}
     
     \begin{figure}[!htbp]
         \centering
@@ -68,6 +68,23 @@ Im nächsten Unterkapitel werden Formeln dargestellt.
         Es wird dringend empfohlen, Biber oder BibTeX zu verwenden (wie in diesen Beispielen).
         
         Siehe dazu auch den Ort wo diese definiert werden \verb|bibliography.bib|, (Templates verfügbar).
+
+        \subsubsection{Code}
+        \begin{lstlisting}[language=C++,name={1. Beispiel},label={sc:bsp:1}]
+            #include <iostream>
+
+            void SayHello(void)
+            {
+                // Kommentar
+                cout << "Hello World!" << endl;
+            }
+
+            int main(int argc, char **argv)
+            {
+                SayHello();
+                return 0;
+            }
+            \end{lstlisting}
 
     
 

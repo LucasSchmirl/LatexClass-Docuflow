@@ -1,16 +1,18 @@
 % DocuFlow Class v1.0 (content.tex)
 % Created by Lucas Schmirl, 2025.
 
-\DFautoSection{Introduction}
-This is the main \glqq{} content\grqq{} of your document.
+\section{Einführung (\texttt{snippets})}
+Hier steht der hauptsächliche \glqq~Inhalt\grqq des Dokuments.
 
-And this is how to use a figure:
-\DFfigure[0.6\linewidth, angle=-90]{PICs/hund}{This is a dog.}{fig:smallFigure}
+Verwende das figure-macro der Klasse um Bilder einzufügen:
+\DFfigure[0.6\linewidth, angle=-90]{PICs/hund}{Das ist ein Hund.}{fig:smallFigure}
 
-Acronyms like \ac{CPU}, \ac{RAM}, and \ac{GPU} can be used after defining them in the acronym environment.
+Abkürzungen wie diese:
+\ac{CPU}, \ac{RAM}, and \ac{GPU}, 
+können nach der Definition in \texttt{acronym} in \texttt{main.tex} verwendet werden.
 
 
-\DFautoSection{Another Section}
-Add your chapters or sections and citations like: \parencite{knuth1984} or~\cite{knuth1984}.
+    \subsection{Überschrift 2. Ebene}
+    Zitate können mit: \parencite{knuth1984} oder~\cite{knuth1984} gesetzt werden.
 
-This is how to use \textcolor{FAVblue}{colored} text.
+    Farbige  \textcolor{FAVblue}{Texte} funktionieren so.
