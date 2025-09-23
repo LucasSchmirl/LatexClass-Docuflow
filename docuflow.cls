@@ -1,10 +1,9 @@
-% DocuFlow Class v1.0
+% DocuFlow Class v1.1
 % Created by Lucas Schmirl, 2025. For non-commercial use only.
 % Licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{docuflow}[2025/09/21 v0.5 DocuFlow class with full features]
-
+\ProvidesClass{docuflow}[2025/09/23 v1.1 DocuFlow class with full features]
 \RequirePackage{etoolbox}
 
 % ---------------- Option defaults ----------------
@@ -51,7 +50,7 @@
 \RequirePackage{csquotes}   % smart quotes
 \RequirePackage{tikz}       % titlepage background
 \RequirePackage{enumitem}   % custom enumerate
-
+%\RequirePackage{blindtext}  % blindtext
 
 % ---------------- Hyperref setup ----------------
 \definecolor{FAVblue}{RGB}{0,142,251} % default URL color
@@ -72,31 +71,32 @@
 \RequirePackage[backend=biber,style=\DF@bibstyle]{biblatex}
 \addbibresource{bibliography.bib}
 
-% ---------------- Titlepage background ----------------
+% ---------------- Titlepage ---------------- 
+% Titlepage background
 \newcommand\DF@bgimage{}
 \newcommand\settitlebackground[1]{\gdef\DF@bgimage{#1}}
 
+% Titlepage content
 \newcommand\DF@titlecontent{}
 \newcommand\setTitlePageContent[1]{\gdef\DF@titlecontent{#1}}
 
+% Redefine maketitle to use custom titlepage
 \renewcommand\maketitle{%
-  \begin{titlepage}
-    \ifx\DF@bgimage\@empty\else
-      \begin{tikzpicture}[remember picture,overlay]
-        \node[opacity=1.0,inner sep=0pt] at (current page.center)
-          {\includegraphics[width=\paperwidth,height=\paperheight]{\DF@bgimage}};
-      \end{tikzpicture}%
-    \fi
-    \DF@titlecontent
-  \end{titlepage}%
+\begin{titlepage}
+  \ifx\DF@bgimage\@empty\else
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[opacity=1.0,inner sep=0pt] at (current page.center)
+    {\includegraphics[width=\paperwidth,height=\paperheight]{\DF@bgimage}};
+  \end{tikzpicture}%
+  \fi
+  \DF@titlecontent%
+\end{titlepage}%
 }
 
-% ---- Frontmatter helper (Abstract + Kurzfassung) sprachenabhängig ---------
+% ---------------- Helpers ---------------- 
+% Helper for Frontmatter (Abstract + Kurzfassung) sprachenabhängig 
 \newcommand{\DFmakefrontmatter}{%
   \maketitle
-  % Contents
-  \tableofcontents
-  \clearpage
   % abstract.tex einbinden, falls vorhanden (bei english und ngerman)
   \IfFileExists{abstract.tex}{\input{abstract.tex}}{}%
   % Kurzfassung einfügen nur wenn Sprache 'ngerman' ist und die Datei existiert
@@ -104,11 +104,14 @@
     \IfFileExists{kurzfassung.tex}{\clearpage\input{kurzfassung.tex}}{}%
   }{}%
   \clearpage
+
+  % Contents
+  \tableofcontents
+  \clearpage
 }
 
-
-% Helper for acronyms section
-\newcommand{\DFautoSection}[1]{%
+% Helper for abstract sections
+\newcommand{\DFabstractSection}[1]{%
   \ifstrequal{\DF@doctype}{book}{\chapter*{#1}}{%
     \ifstrequal{\DF@doctype}{report}{\chapter*{#1}}{%
       \section*{#1}%
@@ -116,20 +119,75 @@
   }%
 }
 
-
-% Sprachpaket laden
-\RequirePackage[\DF@language]{babel}
-%\typeout{DF@language is \DF@language}
-
-
-% ---------------- Acronym heading name ----------------
-\providecommand{\acronymname}{Default (not set)}
-\ifdefstring{\DF@language}{ngerman}{%
-  \renewcommand{\acronymname}{Abkürzungsverzeichnis}%
-}{%
-  \renewcommand{\acronymname}{Acronyms}%
+% Helper for normal sections
+\newcommand{\DFautoSection}[1]{%
+  \ifstrequal{\DF@doctype}{book}{\chapter{#1}}{%
+    \ifstrequal{\DF@doctype}{report}{\chapter{#1}}{%
+      \section{#1}%
+    }%
+  }%
 }
 
+% Helper for abstract keywords
+\newcommand{\keywords}[1]{
+  \vfill
+  \par
+  \noindent\textbf{Keywords:} #1
+}
+
+% Helper for Kurzfassung Schlagworte
+\newcommand{\schlagworte}[1]{
+  \vfill
+  \par
+  \noindent\textbf{Schlagworte:} #1
+}
+
+% Definition Code-Listings Formatierung:
+\usepackage[final]{listings}
+\lstset{captionpos=b,               % caption position bottom
+numberbychapter=false,              % no chapter numbering
+caption=\lstname,                   % caption is filename
+frame=single,                       % single frame around code
+numbers=left,                       % line numbers on left
+stepnumber=1,                       % line number step
+numbersep=2pt,                      % distance line numbers to code
+xleftmargin=15pt,                   % left margin for code
+framexleftmargin=15pt,              % left margin for frame
+numberstyle=\tiny,                  % line number style
+tabsize=3,                          % tab size
+columns=fixed,                      % fixed column width
+basicstyle={\fontfamily{pcr}\selectfont\footnotesize},        % font style
+keywordstyle=\bfseries,                                       % keyword style
+commentstyle={\color[gray]{0.33}\itshape},                    % comment style
+stringstyle=\color[gray]{0.25},                               % string literal style
+breaklines, breakatwhitespace, breakautoindent}               % line breaking
+\lstloadlanguages{[ANSI]C, C++, [gnu]make, gnuplot, Matlab}   % load languages
+
+
+%---------------- Sprachpaket und Funktionen ---------------- 
+% Sprachpaket laden
+\RequirePackage[\DF@language]{babel}
+%\typeout{DF@language is \DF@language}  % for debugging
+
+% language based heading names
+\providecommand{\acronymname}{Default (not set)}
+\providecommand{\bibname}{Default (not set)}
+
+\ifdefstring{\DF@language}{ngerman}{%
+  %\renewcommand{\bibname}{Literaturverzeichnis} % not working due to babel from hell
+  \renewcommand{\listfigurename}{Abbildungsverzeichnis}%
+  \renewcommand{\listtablename}{Tabellenverzeichnis}%
+  \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}%
+  \renewcommand{\acronymname}{Abkürzungsverzeichnis}%
+  \renewcommand{\appendixname}{Anhang}%
+}{%
+  %\renewcommand{\bibname}{Bibliography} % not working due to babel from hell
+  \renewcommand{\listfigurename}{List of Figures}%
+  \renewcommand{\listtablename}{List of Tables}%
+  \renewcommand{\lstlistlistingname}{List of Code}%
+  \renewcommand{\acronymname}{List of Abbreviations}%
+  \renewcommand{\appendixname}{Appendix}%
+}
 
 % Notes
 % Use \newcommand when defining something for the first time.

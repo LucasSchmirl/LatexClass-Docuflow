@@ -1,9 +1,9 @@
-% DocuFlow Class v1.0 (main.tex)
+% DocuFlow Class v1.1 (main.tex)
 % Created by Lucas Schmirl, 2025.
 
 % chktex-file 1 % to ignore trailing whitespace warning
 
-\documentclass[ngerman,article,apa7,12pt]{docuflow}
+\documentclass[ngerman,article,IEEE,12pt]{docuflow}
 
 % Include definitions (titlepage setup)
 \input{definitions.tex}
@@ -31,16 +31,29 @@
 % Example snippets
 \input{snippets.tex}
 
+% Print bibliography
+%\addcontentsline{toc}{section}{\bibname}
+\printbibliography[title=\bibname, heading=bibintoc]
+\clearpage
+
 % Print list of figures
+\addcontentsline{toc}{section}{\listfigurename}
 \listoffigures
 \clearpage
 
 % Print list of tables
+\addcontentsline{toc}{section}{\listtablename}
 \listoftables
 \clearpage
 
+% Print list of codes
+\addcontentsline{toc}{section}{\lstlistlistingname}
+\lstlistoflistings
+\clearpage
+
 % Print acronyms
-\DFautoSection{\acronymname}
+\addcontentsline{toc}{section}{\acronymname}
+\DFabstractSection{\acronymname}
 \begin{acronym}[RAM]  % widest acronym for spacing
   \acro{CPU}{Central Processing Unit}
   \acro{RAM}{Random Access Memory}
@@ -49,7 +62,14 @@
 \end{acronym}
 \clearpage
 
-% Print bibliography
-\printbibliography
+%
+% Hier beginnt der Anhang.
+%
+\clearpage
+\appendix
+\DFautoSection{\appendixname~A}
+\clearpage
+\DFautoSection{\appendixname~B}
+
 
 \end{document}
