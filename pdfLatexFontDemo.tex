@@ -1,0 +1,64 @@
+
+\section*{PDFLaTeX Font Options}
+
+If you compile your document with PdfLaTeX, you can change the font family using standard LaTeX font packages.
+The following font families are commonly available in most LaTeX distributions.\\
+
+\begin{itemize}[noitemsep]
+    \item \rm{Serif: The quick brown fox jumps over the lazy dog.}
+    \item \sf{Sans Serif: The quick brown fox jumps over the lazy dog.}
+    \item \tt{Typewriter: The quick brown fox jumps over the lazy dog.}
+\end{itemize}
+You can also use font packages to change the font style:
+\begin{itemize}[noitemsep]
+    \item {\usefont{T1}{phv}{m}{n} \textbf{Helvetica}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{phv}{b}{n} \textbf{Helvetica Bold}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{ppl}{m}{n} \textbf{Palatino}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pcr}{m}{n} \textbf{Courier}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{put}{m}{n} \textbf{Utopia}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{put}{b}{n} \textbf{Utopia Bold}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pbk}{m}{n} \textbf{Bookman}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pag}{m}{n} \textbf{Avant Garde}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pag}{b}{n} \textbf{Avant Garde Bold}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pnc}{m}{n} \textbf{New Century Schoolbook}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pzc}{m}{n} Zapf Chancery: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pbk}{b}{n} Bookman Bold: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{ptm}{m}{n} \textbf{Times}: The quick brown fox jumps over the lazy dog.}
+    \item {\usefont{T1}{pnc}{b}{n} \textbf{New Century Schoolbook Bold}: The quick brown fox jumps over the lazy dog.}
+    \item \textbf{Default font}: The quick brown fox jumps over the lazy dog.
+\end{itemize}
+
+
+% -------------------------------
+% PDFLaTeX Font Selection Cheat Sheet
+% Usage: \usefont{T1}{family}{series}{shape}
+% -------------------------------
+
+% Family Codes (T1 encoding):
+% phv  : Helvetica (sans-serif)
+% ppl  : Palatino (serif)
+% pcr  : Courier (monospace)
+% put  : Utopia (serif, clean)
+% pbk  : Bookman (serif, decorative)
+% pag  : Avant Garde (sans-serif, geometric)
+% pnc  : New Century Schoolbook (serif, classic)
+% ptm  : Times (serif, standard)
+% pzc  : Zapf Chancery (calligraphic / script)
+
+% Series Codes:
+% m    : Medium (normal)
+% b    : Bold
+% bx   : Bold extended (sometimes available)
+
+% Shape Codes:
+% n    : Normal / upright
+% it   : Italic
+% sl   : Slanted
+% sc   : Small caps
+% ui   : Upright italic (rare)
+
+% Notes:
+% - These fonts are standard in most TeX distributions.
+% - Use within a group {...} to limit scope:
+%   {\usefont{T1}{phv}{m}{n} Some text in Helvetica}
+% - For pdflatex, these are the easiest fonts to switch between using \usefont.
