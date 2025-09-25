@@ -1,21 +1,19 @@
 
-\section*{LuaLaTeX Font Options}
+\section{LuaLaTeX Font Options}
 
-If you compile your document with XeLaTeX or LuaLaTeX, you can easily change the font using the \texttt{fontspec} package.
+If you compile your document with LuaLaTeX, you can easily change the font using the \texttt{fontspec} package.\\
 
-For this you need to uncomment the line in the class file \texttt{docuflow.cls}:
-\begin{verbatim}
-\RequirePackage{fontspec}
-\end{verbatim}
+This class implements an automated engine-check, considering if you compile with luaLaTeX or pdfLaTeX.
+If needed, the \texttt{fontspec} package is included automatically.\\
 
-Also you need to compile your document with XeLaTeX or LuaLaTeX instead of PdfLaTeX.
-To do go to your \texttt{settings.json} file in VSCode and change the compiler from pdflatex to lualatex.\\
+To compile your document with luaLaTeX instead of pdfLaTeX, you need to implement an additional recipe in your \texttt{settings.json} (see~\ref{settingsjson}).\\
 
 For ease of use, a macro:
 
-\texttt{\textbackslash fontX\{FontName\}\{Text\}} is provided to switch fonts.\\
+\textcolor{blue}{\textbackslash fontX\{FontName\}\{Text\}} is provided to switch fonts. 
+Make sure you have these fonts installed on your system to see the effect.\\
 
-Below are some examples of different fonts. Make sure you have these fonts installed on your system to see the effect.\\
+Below are some examples of different fonts.\\
 
 \begin{itemize}[noitemsep]
     \item \fontX{Arial}{\textbf{Arial:}\qquad The quick brown fox jumps over the lazy dog.}
