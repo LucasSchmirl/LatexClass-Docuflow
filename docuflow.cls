@@ -50,7 +50,7 @@
 \RequirePackage{csquotes}   % smart quotes
 \RequirePackage{tikz}       % titlepage background
 \RequirePackage{enumitem}   % custom enumerate
-%\RequirePackage{fontspec}   % font selection (XeLaTeX, LuaLaTeX only)
+\RequirePackage{fontspec}   % font selection (XeLaTeX, LuaLaTeX only)
 
 % ---------------- Hyperref setup ----------------
 \definecolor{FAVblue}{RGB}{0,142,251} % default URL color
