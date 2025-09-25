@@ -1,4 +1,4 @@
-% DocuFlow Class v1.1
+% DocuFlow Class v1.2
 % Created by Lucas Schmirl, 2025. For non-commercial use only.
 % Licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
 
@@ -50,7 +50,7 @@
 \RequirePackage{csquotes}   % smart quotes
 \RequirePackage{tikz}       % titlepage background
 \RequirePackage{enumitem}   % custom enumerate
-%\RequirePackage{blindtext}  % blindtext
+%\RequirePackage{fontspec}   % font selection (XeLaTeX, LuaLaTeX only)
 
 % ---------------- Hyperref setup ----------------
 \definecolor{FAVblue}{RGB}{0,142,251} % default URL color
@@ -140,6 +140,13 @@
   \vfill
   \par
   \noindent\textbf{Schlagworte:} #1
+}
+
+% Font switcher macro
+\newcommand{\fontX}[2]{
+  {
+    \setmainfont{#1} #2
+  }
 }
 
 % Definition Code-Listings Formatierung:
