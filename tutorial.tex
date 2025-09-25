@@ -133,3 +133,79 @@ In \verb|definitions.tex|:
     \end{acronym}
     \end{document}
 \end{verbatim}
+
+\clearpage
+\section{Kompilieren des Dokuments}\label{settingsjson}
+
+Um das Dokument zu kompilieren, verwenden Sie einen LaTeX-Editor wie TeXstudio oder Visual Studio Code mit der LaTeX-Workshop-Erweiterung. 
+Bei der Verwendung von Visual Studio Code stellen Sie sicher, dass die \texttt{settings.json} (erreichbar mit F1) Datei folgenden Block enthält:\\
+
+Achtung, dieser Block ist nur ein Ausschnitt der gesamten \texttt{settings.json} Datei. 
+Falls Sie noch keine \texttt{settings.json} Datei haben, können Sie eine neue anlegen und den gesamten Inhalt einfügen. 
+Der folgende Block muss innerhalb geschweifter Klammern stehen:
+
+% \begin{lstlisting}
+%     // Latex Settings
+%     "latex-workshop.latex.autoClean.run": "onBuilt",
+%     "latex-workshop.latex.autoBuild.run" : "onSave",
+
+%     // Tools
+%     "latex-workshop.latex.tools": [
+%         {
+%          "name": "pdflatex",
+%          "command": "pdflatex",
+%          "args": [
+%           "-shell-escape",
+%           "-synctex=1",
+%           "-interaction=nonstopmode",
+%           "-file-line-error",
+%           "-outdir=%OUTDIR%",
+%           "%DOC%"
+%          ],
+%          "env": {}
+%         },
+%         {
+%          "name": "lualatex",
+%          "command": "lualatex",
+%          "args": [
+%           "-shell-escape",
+%           "-synctex=1",
+%           "-interaction=nonstopmode",
+%           "-file-line-error",
+%           "-outdir=%OUTDIR%",
+%           "%DOC%"
+%          ],
+%          "env": {}
+%         },
+%         {
+%             "name": "biber",
+%             "command": "biber",
+%             "args": [
+%                 "%DOCFILE%"
+%             ]
+%         },
+%        ],
+
+
+%        // Recipes
+%        "latex-workshop.latex.recipes": [
+%         {
+%          "name": "pdflatex", //pdflatex ➞ biber ➞ pdflatex`×2
+%          "tools": [
+%           "pdflatex",
+%           "biber",
+%           "pdflatex",
+%           "pdflatex",
+%          ]
+%         },
+%         {
+%          "name": "lualatex", //lualatex ➞ biber ➞ lualatex`×2
+%          "tools": [
+%           "lualatex",
+%           "biber",
+%           "lualatex",
+%           "lualatex",
+%          ]
+%         }
+%     ],
+% \end{lstlisting}
