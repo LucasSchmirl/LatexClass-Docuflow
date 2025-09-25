@@ -50,7 +50,11 @@
 \RequirePackage{csquotes}   % smart quotes
 \RequirePackage{tikz}       % titlepage background
 \RequirePackage{enumitem}   % custom enumerate
-\RequirePackage{fontspec}   % font selection (XeLaTeX, LuaLaTeX only)
+
+\RequirePackage{iftex}          % check for which engine is used
+\ifluatex
+    \RequirePackage{fontspec}   % font selection (XeLaTeX, LuaLaTeX only)
+\fi
 
 % ---------------- Hyperref setup ----------------
 \definecolor{FAVblue}{RGB}{0,142,251} % default URL color
@@ -147,6 +151,16 @@
   {
     \setmainfont{#1} #2
   }
+}
+
+\newcommand{\DFShowFontDemo}{%
+  \ifluatex
+    % lualatex font Demo
+    \input{luaLatexFontDemo.tex}
+  \else
+      % pdflatex font Demo
+      \input{pdfLatexFontDemo.tex}
+  \fi
 }
 
 % Definition Code-Listings Formatierung:
