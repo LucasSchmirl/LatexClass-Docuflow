@@ -1,0 +1,31 @@
+
+\section*{LuaLaTeX Font Options}
+
+If you compile your document with XeLaTeX or LuaLaTeX, you can easily change the font using the \texttt{fontspec} package.
+
+For this you need to uncomment the line in the class file \texttt{docuflow.cls}:
+\begin{verbatim}
+\RequirePackage{fontspec}
+\end{verbatim}
+
+Also you need to compile your document with XeLaTeX or LuaLaTeX instead of PdfLaTeX.
+To do go to your \texttt{settings.json} file in VSCode and change the compiler from pdflatex to lualatex.\\
+
+For ease of use, a macro:
+
+\texttt{\textbackslash fontX\{FontName\}\{Text\}} is provided to switch fonts.\\
+
+Below are some examples of different fonts. Make sure you have these fonts installed on your system to see the effect.\\
+
+\begin{itemize}[noitemsep]
+    \item \fontX{Arial}{\textbf{Arial:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{inter}{\textbf{Inter:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{exo}{\textbf{Exo:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{calibri}{\textbf{Calibri:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{tahoma}{\textbf{Tahoma:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{bookantiqua}{\textbf{Book Antiqua:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{garamond}{\textbf{Garamond:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{timesnewroman}{\textbf{Times New Roman:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \fontX{georgia}{\textbf{Georgia:}\qquad The quick brown fox jumps over the lazy dog.}
+    \item \textbf{Default:} \qquad The quick brown fox jumps over the lazy dog
+\end{itemize}
