@@ -12,7 +12,7 @@
 *.bcf
 *.bbl
 *.blg
-
+*SAVE-ERROR
 
 # Unignore interesting stuff
 !.gitignore
