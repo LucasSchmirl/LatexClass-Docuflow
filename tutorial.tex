@@ -3,7 +3,7 @@
 
 \section{Kurze Einführung in die \texttt{docuflow}-Klasse}
 
-Die \texttt{docuflow}-Klasse ist eine LaTeX-Klasse, die speziell für wissenschaftliche Dokumente, Berichte und Präsentationen entwickelt wurde. 
+Die \texttt{docuflow}-Klasse ist eine LaTeX-Klasse, die speziell für wissenschaftliche Dokumentation entwickelt wurde. 
 Sie bietet einige Komfortfunktionen und vorgefertigte Layouts für konsistente Formatierung.
 
 \subsection{Aufruf der Klasse}
@@ -40,16 +40,19 @@ Die Klasse wird wie folgt eingebunden:
     \end{itemize}
 \end{itemize}
 
+\clearpage
 \subsection{Besondere Funktionen}
 
 \begin{itemize}
     \item \textbf{Titelblatt mit Hintergrundbild:}\\
-    Mit den Makros \verb|\settitlebackground{<Bildpfad>}| und 
+    Mit den Makros \verb|\settitlebackground{<Bildpfad>}| 
     
-    \verb|\setTitlePageContent{<Inhalt>}| kann ein individuelles Titelblatt gestaltet werden.
+    und \verb|\setTitlePageContent{<Inhalt>}| kann ein individuelles Titelblatt gestaltet werden (siehe \verb|definitions.tex|).
 
     \item \textbf{Automatische Überschriften für Frontmatter:}\\
-    Abstract, Kurzfassung und Abkürzungsverzeichnis passen sich automatisch an den Dokumenttyp an (Artikel: \verb|\section*|, Report/Book: \verb|\chapter*|).
+    Abstract, Kurzfassung und Abkürzungsverzeichnis passen sich automatisch an den Dokumenttyp an 
+    
+    (Artikel: \verb|\section*|, Report/Book: \verb|\chapter*|).
 
     \item \textbf{Bibliographie-Integration:}\\
     Biber/BibLaTeX wird direkt unterstützt. Der Stil passt sich automatisch an die Klassenoption an.
@@ -58,7 +61,8 @@ Die Klasse wird wie folgt eingebunden:
     Beispiel: \verb|\DFfigure[<Breite>]{<Bild>}{<Beschriftung>}{<Label>}|
     
     \item \textbf{Deutsche Lokalisierung:}\\
-    Überschriften für Abbildungsverzeichnis, Tabellenverzeichnis, Inhaltsverzeichnis und Abkürzungsverzeichnis werden automatisch gesetzt, wenn \texttt{ngerman} gewählt wird.
+    Überschriften für Abbildungsverzeichnis, Tabellenverzeichnis, Inhaltsverzeichnis und Abkürzungsverzeichnis werden automatisch gesetzt, 
+    wenn \texttt{ngerman} gewählt wird (können in \verb|docuflow.cls| abgeändert werden).
 \end{itemize}
 
 
@@ -66,17 +70,22 @@ Die Klasse wird wie folgt eingebunden:
 
 \subsection{Aufbau der Dokumentdateien}
 
-Die \texttt{docuflow}-Klasse ist so konzipiert, dass der Inhalt modular in mehreren \texttt{.tex}-Dateien organisiert wird. Jede Datei hat einen eigenen Zweck und kann unabhängig bearbeitet werden. Danach werden die Dateien einfach in das Hauptdokument eingebunden.
+Die \texttt{docuflow}-Klasse ist so konzipiert, dass der Inhalt modular in mehreren 
+\texttt{.tex}-Dateien organisiert wird. Jede Datei hat einen eigenen Zweck und kann unabhängig 
+bearbeitet werden. Danach werden die Dateien einfach in das Hauptdokument eingebunden.
 
 \begin{itemize}
     \item \textbf{definitions.tex:}  
-    Enthält alle globalen Definitionen, Farben, Schriftarten, Größen und Makros (z. B. für Abbildungen). Diese Datei wird einmalig in \texttt{main.tex} geladen.
+    Enthält alle globalen Definitionen, Farben, Größen und Makros (z. B. für Abbildungen). 
+    Diese Datei wird einmalig in \texttt{main.tex} geladen.
 
     \item \textbf{abstract.tex:}  
-    Enthält den englischen Abstract des Dokuments. Einfach den Text bearbeiten, die Überschrift wird automatisch angepasst.
+    Enthält den englischen Abstract des Dokuments. 
+    Einfach den Text und Keywords bearbeiten.
 
     \item \textbf{kurzfassung.tex:}  
-    Enthält die deutsche Kurzfassung. Diese Datei wird nur eingebunden, wenn die Klasse mit \texttt{ngerman} aufgerufen wird.
+    Enthält die deutsche Kurzfassung. Diese Datei wird nur eingebunden, wenn die Klasse mit 
+    \texttt{ngerman} aufgerufen wird. Analog zu \verb|abstract.tex| den Text und Keywords bearbeiten.
 
     \item \textbf{content.tex:}  
     Der Hauptinhalt des Dokuments. Alle Kapitel, Abschnitte oder sonstiger Text wird hier eingefügt.  
@@ -87,125 +96,91 @@ Die \texttt{docuflow}-Klasse ist so konzipiert, dass der Inhalt modular in mehre
     Sie wird über \verb|\addbibresource{bibliography.bib}| in der Klasse eingebunden.
 
     \item \textbf{PICs/\textless name\textgreater.pdf/png/jpg:}  
-    Alle Grafiken, die über \verb|\DFfigure| oder manuell eingefügt werden, liegen hier.  
+    Dieser Ordner enthält alle Grafiken, die über \verb|\DFfigure| oder manuell eingefügt werden.
 \end{itemize}
 
 \noindent
-Die Idee ist, dass jede Datei separat bearbeitet wird, ohne das Hauptdokument zu verändern. Das Hauptdokument \texttt{main.tex} bindet sie dann alle ein und sorgt für die korrekte Reihenfolge.
+Hintergrund für diese Struktur ist, dass jede Datei separat bearbeitet wird, 
+ohne das Hauptdokument zu verändern. Das Hauptdokument \texttt{main.tex} bindet 
+alle Dokumente ein und sorgt für die korrekte Reihenfolge.\\
+
+Alle weiteren, in diesem Ordner enthaltenen, Dokumente:
+
+\begin{itemize}[noitemsep]
+    \item \verb|luaLatexFontDemo.tex| 
+    \item \verb|pdfLatexFontDemo.tex| 
+    \item \verb|tutorial.tex| 
+    \item \verb|snippets.tex|
+\end{itemize}
+
+dienen der Demonstration und sind nicht notwendig für die Funktion der Klasse 
+(können in \verb|main.tex| auskommentiert werden).
 
 
 \clearpage
 
 \subsection{Beispiel für die Verwendung}
 
-
 In \verb|definitions.tex|:
 
 \begin{verbatim}
-    \settitlebackground{PICs/bg-image.pdf}
+    \renewcommand{\title}{My First DocuFlow Document}
+    \renewcommand{\author}{Lucas Schmirl, MSc.}
+    \settitlebackground{PICs/title-DocuFlow.pdf}
     \setTitlePageContent{
-    \centering
-    {\Huge\bfseries Mein Titel}\\[2ex]
-    {\Large Autor Name}\\[1ex]
-    {\small \today}
-    }
+    \begin{center}
+        \title\\
+        \author\\
+        \today
+    \end{center}}
 \end{verbatim}
 
 \noindent In \verb|main.tex|:
 
 \begin{verbatim}
     \documentclass[ngerman,article,IEEE,12pt]{docuflow}
-
-
+    \input{definitions.tex}
     \begin{document}
-    \maketitle
-    \input{abstract.tex}
-    \input{kurzfassung.tex}
-    \pagenumbering{arabic}
-    \input{content.tex}
-    \printbibliography
-    \listoffigures
-    \listoftables
-    \section*{\acronymname}
-    \begin{acronym}[TDMA]
-    \acro{CPU}{Central Processing Unit}
-    \acro{RAM}{Random Access Memory}
-    \end{acronym}
+        \pagenumbering{roman}
+        \DFmakefrontmatter
+        \pagenumbering{arabic}
+        \input{content.tex}
+        \printbibliography[title=\bibname, heading=bibintoc]
+        \addcontentsline{toc}{section}{\listfigurename}
+        \listoffigures
+        \addcontentsline{toc}{section}{\listtablename}
+        \listoftables
+        \addcontentsline{toc}{section}{\lstlistlistingname}
+        \lstlistoflistings
+        \addcontentsline{toc}{section}{\acronymname}
+        \DFabstractSection{\acronymname}
+        \begin{acronym}[AFT]
+        \acro{AFT}{Acronym for testing}
+        \end{acronym}
+        \appendix
+        \DFautoSection{\appendixname~A}
     \end{document}
+
 \end{verbatim}
 
 \clearpage
-\section{Kompilieren des Dokuments}\label{settingsjson}
+
+\subsection{Kompilieren des Dokuments}\label{settingsjson}
 
 Um das Dokument zu kompilieren, verwenden Sie einen LaTeX-Editor wie TeXstudio oder Visual Studio Code mit der LaTeX-Workshop-Erweiterung. 
-Bei der Verwendung von Visual Studio Code stellen Sie sicher, dass die \texttt{settings.json} (erreichbar mit F1) Datei folgenden Block enthält:\\
+Bei der Verwendung von Visual Studio Code stellen Sie sicher, dass die \verb|settings.json| (User Settings, erreichbar mit F1 + settings.json) korrekt konfiguriert ist (siehe \verb|README.md|).\\
 
-Achtung, dieser Block ist nur ein Ausschnitt der gesamten \texttt{settings.json} Datei. 
-Falls Sie noch keine \texttt{settings.json} Datei haben, können Sie eine neue anlegen und den gesamten Inhalt einfügen. 
-Der folgende Block muss innerhalb geschweifter Klammern stehen:
+\textbf{Achtung}, der Block im \verb|README.md| ist nur ein Ausschnitt der gesamten \verb|settings.json| Datei. 
+Falls Sie schon eine bestehende \verb|settings.json| haben, fügen Sie den Block innerhalb der geschwungenen Klammern ein.
+Falls Sie keine \verb|settings.json| haben, können Sie eine neue anlegen und den gesamten Inhalt einfügen. 
+Der Block muss sich jedenfalls innerhalb geschweifter Klammern befinden.\\
 
-% \begin{lstlisting}
-%     // Latex Settings
-%     "latex-workshop.latex.autoClean.run": "onBuilt",
-%     "latex-workshop.latex.autoBuild.run" : "onSave",
-
-%     // Tools
-%     "latex-workshop.latex.tools": [
-%         {
-%          "name": "pdflatex",
-%          "command": "pdflatex",
-%          "args": [
-%           "-shell-escape",
-%           "-synctex=1",
-%           "-interaction=nonstopmode",
-%           "-file-line-error",
-%           "-outdir=%OUTDIR%",
-%           "%DOC%"
-%          ],
-%          "env": {}
-%         },
-%         {
-%          "name": "lualatex",
-%          "command": "lualatex",
-%          "args": [
-%           "-shell-escape",
-%           "-synctex=1",
-%           "-interaction=nonstopmode",
-%           "-file-line-error",
-%           "-outdir=%OUTDIR%",
-%           "%DOC%"
-%          ],
-%          "env": {}
-%         },
-%         {
-%             "name": "biber",
-%             "command": "biber",
-%             "args": [
-%                 "%DOCFILE%"
-%             ]
-%         },
-%        ],
-
-
-%        // Recipes
-%        "latex-workshop.latex.recipes": [
-%         {
-%          "name": "pdflatex", //pdflatex ➞ biber ➞ pdflatex`×2
-%          "tools": [
-%           "pdflatex",
-%           "biber",
-%           "pdflatex",
-%           "pdflatex",
-%          ]
-%         },
-%         {
-%          "name": "lualatex", //lualatex ➞ biber ➞ lualatex`×2
-%          "tools": [
-%           "lualatex",
-%           "biber",
-%           "lualatex",
-%           "lualatex",
-%          ]
-%         }
-%     ],
-% \end{lstlisting}
+\noindent\verb|settings.json:|
+\begin{verbatim}
+{
+        some other settings,
+        // LaTeX Settings
+        // LaTeX Tools
+        // LaTeX Recipes
+}
+\end{verbatim}
