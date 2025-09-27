@@ -1,9 +1,10 @@
-%% DocuFlow Class v1.2 (main.tex)
+%% DocuFlow Class v1.3 (main.tex)
 %% Created by Lucas Schmirl, 2025.
 
 % to ignore trailing whitespace warning
 % chktex-file 1
 
+% call the class
 \documentclass[ngerman,article,IEEE,12pt]{docuflow}
 
 % Include definitions (titlepage setup)
@@ -12,32 +13,38 @@
 % === START DOCUMENT ===
 \begin{document}
 
-% Front matter with Roman page numbering
+% Roman page numbering (from here on)
 \pagenumbering{roman}
 
 % handle abstract, and Kurzfassung (if ngerman)
-\DFmakefrontmatter
+\DFmakefrontmatter % contains renewed \maketitle
 
-% main matter with Arabic page numbering
+% Arabic page numbering (from here on)
 \pagenumbering{arabic}
 
 % Class tutorial
 \input{tutorial.tex}
 \clearpage
 
-% Font demo, depending on used compile-engine this either shows the LuaLaTeX or the pdfLaTeX font demo
+% Example snippets
+\input{snippets.tex}
+\clearpage
+
+% Font demo, depending on used compile-engine this either shows the 
+% LuaLaTeX or the pdfLaTeX font demo
 \DFShowFontDemo
 \clearpage
 
-% Main content
+
+% --------------------- Main content -------------------------
 \input{content.tex}
 \clearpage
 
-% Example snippets
-\input{snippets.tex}
+
+
+% ------------- Reference and Lists content ------------------
 
 % Print bibliography
-%\addcontentsline{toc}{section}{\bibname}
 \printbibliography[title=\bibname, heading=bibintoc]
 \clearpage
 
@@ -63,14 +70,10 @@
   \acro{CPU}{Central Processing Unit}
   \acro{RAM}{Random Access Memory}
   \acro{GPU}{Graphics Processing Unit}
-  \acro{TBD}{The best dog}
 \end{acronym}
 \clearpage
 
-%
-% Hier beginnt der Anhang.
-%
-\clearpage
+% Appendix
 \appendix
 \DFautoSection{\appendixname~A}
 \clearpage

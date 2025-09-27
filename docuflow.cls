@@ -1,4 +1,4 @@
-% DocuFlow Class v1.2
+% DocuFlow Class v1.3
 % Created by Lucas Schmirl, 2025. For non-commercial use only.
 % Licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
 
@@ -45,11 +45,19 @@
 % ---------------- Required packages ----------------
 \RequirePackage{graphicx}   % images
 \RequirePackage{acronym}    % acronym lists
+\RequirePackage[final]{listings}  % code
 \RequirePackage{xcolor}     % colors
 \RequirePackage{amsmath}    % math support
 \RequirePackage{csquotes}   % smart quotes
 \RequirePackage{tikz}       % titlepage background
 \RequirePackage{enumitem}   % custom enumerate
+% drawing
+\RequirePackage{circuitikz} % drawing circuits with tikz
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{pgfplots}
+% drawing settings
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning, shapes.geometric, arrows.meta, shapes.arrows, shapes.symbols, decorations.pathmorphing}
 
 \RequirePackage{iftex}          % check for which engine is used
 \ifluatex
@@ -164,7 +172,14 @@
 }
 
 % Definition Code-Listings Formatierung:
-\usepackage[final]{listings}
+
+% User-defined colors
+\definecolor{CPPgreen}{HTML}{6a9950}
+\definecolor{CPPblue}{HTML}{569cd6}
+\definecolor{CPPlightblue}{HTML}{9cdcfe}
+\definecolor{CPPyellow}{HTML}{dcdcaa}
+\definecolor{CPPorange}{HTML}{ce9178}
+
 \lstset{captionpos=b,               % caption position bottom
 numberbychapter=false,              % no chapter numbering
 caption=\lstname,                   % caption is filename
@@ -177,13 +192,13 @@ framexleftmargin=15pt,              % left margin for frame
 numberstyle=\tiny,                  % line number style
 tabsize=3,                          % tab size
 columns=fixed,                      % fixed column width
+showstringspaces=false,             % string spaces
 basicstyle={\fontfamily{pcr}\selectfont\footnotesize},        % font style
-keywordstyle=\bfseries,                                       % keyword style
-commentstyle={\color[gray]{0.33}\itshape},                    % comment style
-stringstyle=\color[gray]{0.25},                               % string literal style
+keywordstyle=\bfseries\color{CPPblue},               % keyword style
+commentstyle={\color{CPPgreen}\itshape},                    % comment style
+stringstyle=\color{CPPorange},                               % string literal style
 breaklines, breakatwhitespace, breakautoindent}               % line breaking
-\lstloadlanguages{[ANSI]C, C++, [gnu]make, gnuplot, Matlab}   % load languages
-
+\lstloadlanguages{[ANSI]C, C++, [gnu]make, gnuplot, Matlab, python}   % load languages
 
 %---------------- Sprachpaket und Funktionen ---------------- 
 % Sprachpaket laden
@@ -199,6 +214,7 @@ breaklines, breakatwhitespace, breakautoindent}               % line breaking
   \renewcommand{\listfigurename}{Abbildungsverzeichnis}%
   \renewcommand{\listtablename}{Tabellenverzeichnis}%
   \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}%
+  \renewcommand{\lstlistingname}{Quellcode}%
   \renewcommand{\acronymname}{Abkürzungsverzeichnis}%
   \renewcommand{\appendixname}{Anhang}%
 }{%
@@ -206,6 +222,7 @@ breaklines, breakatwhitespace, breakautoindent}               % line breaking
   \renewcommand{\listfigurename}{List of Figures}%
   \renewcommand{\listtablename}{List of Tables}%
   \renewcommand{\lstlistlistingname}{List of Code}%
+  \renewcommand{\lstlistingname}{Code}%
   \renewcommand{\acronymname}{List of Abbreviations}%
   \renewcommand{\appendixname}{Appendix}%
 }
